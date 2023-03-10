@@ -22,12 +22,16 @@ class ContactDetailViewController: UIViewController {
     @IBOutlet weak var textFieldPhone: UITextField!
     @IBOutlet weak var textFieldEmail: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @Published private var isEditingMode: Bool = false
     private var cancellable: AnyCancellable?
     
+    private let all: [ContactItem]
     private var contact: ContactItem
         
-    init(contact: ContactItem) {
+    init(all: [ContactItem], contact: ContactItem) {
+        self.all = all
         self.contact = contact
         
         super.init(nibName: String(describing: ContactDetailViewController.self), bundle: nil)
@@ -49,6 +53,17 @@ class ContactDetailViewController: UIViewController {
         
         setupUI()
         setupEditingObserver()
+        hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+
     }
     
     @objc private func didTapEdit() {
@@ -57,8 +72,26 @@ class ContactDetailViewController: UIViewController {
     }
     
     @objc private func didTapSave() {
+        // TODO: move this to a presenter
+        
         updateEditingMode()
         debugPrint("Save")
+        
+        let editedContact = ContactItem(id: contact.id,
+                                        firstName: textFieldFirstName.unwrappedText(),
+                                        lastName: textFieldLastName.unwrappedText(),
+                                        companyName: textFieldCompanyName.unwrappedText(),
+                                        address: textFieldAddress.unwrappedText(),
+                                        city: textFieldCity.unwrappedText(),
+                                        country: textFieldCountry.unwrappedText(),
+                                        state: textFieldState.unwrappedText(),
+                                        zip: textFieldZip.unwrappedText(),
+                                        phone1: textFieldPhone1.unwrappedText(),
+                                        phone: textFieldPhone.unwrappedText(),
+                                        email: textFieldEmail.unwrappedText())
+        
+        // TODO: remove this hardcoded file name - it should come from SceneDelegate
+        ContactFileWriter(fileLoader: CSVLoader(fileName: "sample_contacts")).save(contacts: all, editedContact: editedContact)
     }
     
     private func updateEditingMode() {
@@ -100,5 +133,22 @@ class ContactDetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = nil
         navigationItem.rightBarButtonItem = isEditing ? UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave)) : UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(didTapEdit))
+    }
+}
+
+extension ContactDetailViewController {
+    @objc func keyboardWillShow(notification: NSNotification){
+        var userInfo = notification.userInfo!
+        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset: UIEdgeInsets = scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification){
+        let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
     }
 }

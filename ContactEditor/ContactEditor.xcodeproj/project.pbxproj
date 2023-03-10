@@ -35,6 +35,8 @@
 		8DD2A94E29B7820A0029DE3C /* ContactLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2A94D29B7820A0029DE3C /* ContactLoader.swift */; };
 		8DD2A95029B7822A0029DE3C /* ContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2A94F29B7822A0029DE3C /* ContactItem.swift */; };
 		8DD2A95329B7C40F0029DE3C /* String+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2A95229B7C40F0029DE3C /* String+File.swift */; };
+		8DE5CA2229BB882800EFC9BA /* UITextField+TextUnwrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE5CA2129BB882800EFC9BA /* UITextField+TextUnwrapper.swift */; };
+		8DE5CA2429BBA7F700EFC9BA /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE5CA2329BBA7F700EFC9BA /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		8DD2A94F29B7822A0029DE3C /* ContactItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItem.swift; sourceTree = "<group>"; };
 		8DD2A95229B7C40F0029DE3C /* String+File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+File.swift"; sourceTree = "<group>"; };
 		8DD2A95529B7CBE20029DE3C /* test_contacts.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_contacts.csv; sourceTree = "<group>"; };
+		8DE5CA2129BB882800EFC9BA /* UITextField+TextUnwrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextUnwrapper.swift"; sourceTree = "<group>"; };
+		8DE5CA2329BBA7F700EFC9BA /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,13 +205,6 @@
 			path = FileWriter;
 			sourceTree = "<group>";
 		};
-		8D2AA9FC29BB5930000F507B /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
 		8DD2A90B29B776040029DE3C = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +235,6 @@
 				8D0B3F9529B8FEDA007132F1 /* FileLoader */,
 				8D0B3F9929B951C0007132F1 /* FileWriter */,
 				8DD2A92229B776060029DE3C /* LaunchScreen.storyboard */,
-				8D2AA9FC29BB5930000F507B /* Navigation */,
 				8DD2A94729B7768D0029DE3C /* Resources */,
 				8D0B3FA329B967CC007132F1 /* Views */,
 				8D0B3FB229BA2EE4007132F1 /* Presenter */,
@@ -283,6 +279,8 @@
 			children = (
 				8DD2A95229B7C40F0029DE3C /* String+File.swift */,
 				8D0B3FB529BA3007007132F1 /* UITableView+Dequeueing.swift */,
+				8DE5CA2129BB882800EFC9BA /* UITextField+TextUnwrapper.swift */,
+				8DE5CA2329BBA7F700EFC9BA /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -404,6 +402,7 @@
 			files = (
 				8D0B3F9729B8FEE8007132F1 /* CSVLoader.swift in Sources */,
 				8DD2A95329B7C40F0029DE3C /* String+File.swift in Sources */,
+				8DE5CA2429BBA7F700EFC9BA /* UIViewControllerExtension.swift in Sources */,
 				8D0B3FAB29B96B79007132F1 /* ContactTableViewCell.swift in Sources */,
 				8DD2A95029B7822A0029DE3C /* ContactItem.swift in Sources */,
 				8D0B3F9B29B951E8007132F1 /* CSVWriter.swift in Sources */,
@@ -411,6 +410,7 @@
 				8DD2A94E29B7820A0029DE3C /* ContactLoader.swift in Sources */,
 				8DD2A91829B776040029DE3C /* AppDelegate.swift in Sources */,
 				8D0B3F9D29B95323007132F1 /* ContactWriter.swift in Sources */,
+				8DE5CA2229BB882800EFC9BA /* UITextField+TextUnwrapper.swift in Sources */,
 				8D0B3FBE29BA5309007132F1 /* ContactDetailViewController.swift in Sources */,
 				8D0B3FB429BA2F02007132F1 /* ContactListPresenter.swift in Sources */,
 				8D0B3FA629B967FE007132F1 /* ContactListTableViewController.swift in Sources */,

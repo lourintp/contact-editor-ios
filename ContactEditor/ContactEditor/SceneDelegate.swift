@@ -14,6 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     lazy var fileLoader = {
         CSVLoader(fileName: "sample_contacts")
     }()
+    lazy var fileWriter = {
+        CSVWriter(fileName: "sample_contacts")
+    }
     lazy var contactLoader = {
         ContactFileLoader(fileLoader: fileLoader)
     }()

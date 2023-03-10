@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactDetailViewController" customModule="ContactEditor" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="tob-Ub-0HU" id="bq0-QB-qe5"/>
                 <outlet property="textFieldAddress" destination="2z8-ad-PJP" id="ejE-UR-ai6"/>
                 <outlet property="textFieldCity" destination="51e-oK-31h" id="Cqv-Wr-Qny"/>
                 <outlet property="textFieldCompanyName" destination="5T1-6d-izs" id="lKc-pX-Xwr"/>

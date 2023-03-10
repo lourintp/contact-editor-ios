@@ -53,7 +53,7 @@ class ContactListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = ContactDetailViewController(contact: data[indexPath.row])
+        let vc = ContactDetailViewController(all: data, contact: data[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 }

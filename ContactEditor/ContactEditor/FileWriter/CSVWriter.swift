@@ -34,6 +34,7 @@ final class CSVWriter: FileWriter {
             } ).joined(separator: "\n"))
             
             try csvContent.write(toFile: filePath, atomically: true, encoding: .utf8)
+            print("written successfully")
         } catch {
             throw error
         }
