@@ -14,12 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     lazy var fileLoader = {
         CSVLoader(fileName: "sample_contacts")
     }()
+    
     lazy var fileWriter = {
         CSVWriter(fileName: "sample_contacts")
-    }
+    }()
+    
     lazy var contactLoader = {
         ContactFileLoader(fileLoader: fileLoader)
     }()
+    
+    lazy var contactWriter = ContactFileWriter(fileWriter: fileWriter)
     lazy var contactListPresenter = ContactListPresenter(loader: contactLoader)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -30,7 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let navigationController = UINavigationController(rootViewController: ContactListTableViewController(presenter: contactListPresenter))        
+        let navigationController = UINavigationController()
+        let navigationFlow = ContactFlow(navigationController: navigationController, writer: contactWriter, loader: contactLoader)
+        
+        navigationFlow.start()
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

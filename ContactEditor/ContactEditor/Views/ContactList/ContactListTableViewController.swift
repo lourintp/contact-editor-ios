@@ -7,10 +7,12 @@
 
 import UIKit
 
-class ContactListTableViewController: UITableViewController {
+final class ContactListTableViewController: UITableViewController {
     
     private var data = [ContactItem]()
     private var presenter: ContactListPresenterProtocol?
+    
+    var onSelectContact: (([ContactItem], ContactItem) -> Void)?
     
     init(presenter: ContactListPresenterProtocol) {
         self.presenter = presenter
@@ -53,8 +55,7 @@ class ContactListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = ContactDetailViewController(all: data, contact: data[indexPath.row])
-        navigationController?.pushViewController(vc, animated: true)
+        onSelectContact?(data, data[indexPath.row])
     }
 }
 

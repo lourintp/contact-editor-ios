@@ -13,10 +13,10 @@ protocol ContactWriter {
 
 final class ContactFileWriter: ContactWriter {
     
-    private let fileLoader: FileLoader
+    private let fileWriter: FileWriter
     
-    init(fileLoader: FileLoader) {
-        self.fileLoader = fileLoader
+    init(fileWriter: FileWriter) {
+        self.fileWriter = fileWriter
     }
     
     // TODO: bad smell here, need to improve this logic
@@ -30,9 +30,8 @@ final class ContactFileWriter: ContactWriter {
                 break
             }
         }
-                
         do {
-            try CSVWriter(fileName: "sample_contacts").write(content: ContactToCSVMapper.map(contacts: editingList))
+            try fileWriter.write(content: ContactToCSVMapper.map(contacts: editingList))
         } catch {
             print(error)
         }

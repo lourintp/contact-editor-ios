@@ -27,10 +27,14 @@ class ContactDetailViewController: UIViewController {
     @Published private var isEditingMode: Bool = false
     private var cancellable: AnyCancellable?
     
+    private let writer: ContactWriter
     private let all: [ContactItem]
     private var contact: ContactItem
+    
+    var onSaveContact: (() -> Void)?
         
-    init(all: [ContactItem], contact: ContactItem) {
+    init(writer: ContactWriter, all: [ContactItem], contact: ContactItem) {
+        self.writer = writer
         self.all = all
         self.contact = contact
         
@@ -89,9 +93,10 @@ class ContactDetailViewController: UIViewController {
                                         phone1: textFieldPhone1.unwrappedText(),
                                         phone: textFieldPhone.unwrappedText(),
                                         email: textFieldEmail.unwrappedText())
+                
+        writer.save(contacts: all, editedContact: editedContact)
         
-        // TODO: remove this hardcoded file name - it should come from SceneDelegate
-        ContactFileWriter(fileLoader: CSVLoader(fileName: "sample_contacts")).save(contacts: all, editedContact: editedContact)
+        onSaveContact?()
     }
     
     private func updateEditingMode() {
