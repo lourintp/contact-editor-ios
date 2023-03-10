@@ -39,7 +39,11 @@ final class ContactListTableViewController: UITableViewController {
         presenter?.loadContacts()
     }
 
-    // MARK: - Table view data source    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        167.0
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
