@@ -25,6 +25,8 @@
 		8D0B3FBE29BA5309007132F1 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B3FBC29BA5309007132F1 /* ContactDetailViewController.swift */; };
 		8D0B3FBF29BA5309007132F1 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0B3FBD29BA5309007132F1 /* ContactDetailViewController.xib */; };
 		8D0B3FC229BA58E8007132F1 /* CSVWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B3FC129BA58E8007132F1 /* CSVWriterTests.swift */; };
+		8D74E38E2A8E3F4D00920FE1 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D74E38D2A8E3F4D00920FE1 /* Dependencies.swift */; };
+		8D74E3902A8E403100920FE1 /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D74E38F2A8E403100920FE1 /* Inject.swift */; };
 		8D8F895E29B8F361002EC81D /* CSVLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F895D29B8F361002EC81D /* CSVLoaderTests.swift */; };
 		8DD2A91829B776040029DE3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2A91729B776040029DE3C /* AppDelegate.swift */; };
 		8DD2A91A29B776040029DE3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2A91929B776040029DE3C /* SceneDelegate.swift */; };
@@ -67,6 +69,8 @@
 		8D0B3FBC29BA5309007132F1 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		8D0B3FBD29BA5309007132F1 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
 		8D0B3FC129BA58E8007132F1 /* CSVWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriterTests.swift; sourceTree = "<group>"; };
+		8D74E38D2A8E3F4D00920FE1 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		8D74E38F2A8E403100920FE1 /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
 		8D8F895D29B8F361002EC81D /* CSVLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVLoaderTests.swift; sourceTree = "<group>"; };
 		8D8F895F29B8F5E1002EC81D /* empty_file.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty_file.csv; sourceTree = "<group>"; };
 		8DD2A91429B776040029DE3C /* ContactEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +211,15 @@
 			path = FileWriter;
 			sourceTree = "<group>";
 		};
+		8D74E38C2A8E3F2A00920FE1 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				8D74E38D2A8E3F4D00920FE1 /* Dependencies.swift */,
+				8D74E38F2A8E403100920FE1 /* Inject.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		8DD2A90B29B776040029DE3C = {
 			isa = PBXGroup;
 			children = (
@@ -228,19 +241,20 @@
 		8DD2A91629B776040029DE3C /* ContactEditor */ = {
 			isa = PBXGroup;
 			children = (
-				8DE5CA2929BBC32600EFC9BA /* Navigation */,
 				8DD2A92529B776060029DE3C /* Info.plist */,
 				8DD2A91729B776040029DE3C /* AppDelegate.swift */,
 				8DD2A91929B776040029DE3C /* SceneDelegate.swift */,
 				8DD2A92029B776060029DE3C /* Assets.xcassets */,
 				8DD2A94C29B781F60029DE3C /* ContactFeature */,
+				8D74E38C2A8E3F2A00920FE1 /* DI */,
 				8DD2A95129B7C3F40029DE3C /* Extension */,
 				8D0B3F9529B8FEDA007132F1 /* FileLoader */,
 				8D0B3F9929B951C0007132F1 /* FileWriter */,
 				8DD2A92229B776060029DE3C /* LaunchScreen.storyboard */,
+				8DE5CA2929BBC32600EFC9BA /* Navigation */,
+				8D0B3FB229BA2EE4007132F1 /* Presenter */,
 				8DD2A94729B7768D0029DE3C /* Resources */,
 				8D0B3FA329B967CC007132F1 /* Views */,
-				8D0B3FB229BA2EE4007132F1 /* Presenter */,
 			);
 			path = ContactEditor;
 			sourceTree = "<group>";
@@ -413,6 +427,7 @@
 			files = (
 				8D0B3F9729B8FEE8007132F1 /* CSVLoader.swift in Sources */,
 				8DD2A95329B7C40F0029DE3C /* String+File.swift in Sources */,
+				8D74E3902A8E403100920FE1 /* Inject.swift in Sources */,
 				8DE5CA2429BBA7F700EFC9BA /* UIViewControllerExtension.swift in Sources */,
 				8D0B3FAB29B96B79007132F1 /* ContactTableViewCell.swift in Sources */,
 				8DD2A95029B7822A0029DE3C /* ContactItem.swift in Sources */,
@@ -422,6 +437,7 @@
 				8DD2A91829B776040029DE3C /* AppDelegate.swift in Sources */,
 				8D0B3F9D29B95323007132F1 /* ContactWriter.swift in Sources */,
 				8DE5CA2B29BBC33800EFC9BA /* ContactNavigationFlow.swift in Sources */,
+				8D74E38E2A8E3F4D00920FE1 /* Dependencies.swift in Sources */,
 				8DE5CA2229BB882800EFC9BA /* UITextField+TextUnwrapper.swift in Sources */,
 				8D0B3FBE29BA5309007132F1 /* ContactDetailViewController.swift in Sources */,
 				8D0B3FB429BA2F02007132F1 /* ContactListPresenter.swift in Sources */,

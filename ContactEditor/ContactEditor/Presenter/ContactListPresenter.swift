@@ -21,12 +21,8 @@ protocol ContactListView: AnyObject {
 final class ContactListPresenter: ContactListPresenterProtocol {
     
     private var cancellables = Set<AnyCancellable>()
-    private let loader: ContactLoader
+    @Inject private var loader: ContactLoader
     weak var view: ContactListView?
-    
-    init(loader: ContactLoader) {
-        self.loader = loader
-    }
     
     func loadContacts() {
         loader.load()

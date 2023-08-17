@@ -11,31 +11,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    lazy var fileLoader = {
+    private lazy var fileLoader = {
         CSVLoader(fileName: "sample_contacts")
     }()
     
-    lazy var fileWriter = {
+    private lazy var fileWriter = {
         CSVWriter(fileName: "sample_contacts")
     }()
     
-    lazy var contactLoader = {
+    private lazy var contactLoader = {
         ContactFileLoader(fileLoader: fileLoader)
     }()
     
-    lazy var contactWriter = ContactFileWriter(fileWriter: fileWriter)
-    lazy var contactListPresenter = ContactListPresenter(loader: contactLoader)
+    private lazy var contactWriter: ContactWriter = ContactFileWriter(fileWriter: fileWriter)
+    private lazy var contactListPresenter: ContactListPresenterProtocol = ContactListPresenter()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
+                
+        Dependencies.root.add{ self.contactWriter as ContactWriter }
+        Dependencies.root.add{ self.contactLoader as ContactLoader }
+        
         configureWindow()
     }
     
     func configureWindow() {
         let navigationController = UINavigationController()
-        let navigationFlow = ContactFlow(navigationController: navigationController, writer: contactWriter, loader: contactLoader)
+        let navigationFlow = ContactFlow(navigationController: navigationController)
         
         navigationFlow.start()
         

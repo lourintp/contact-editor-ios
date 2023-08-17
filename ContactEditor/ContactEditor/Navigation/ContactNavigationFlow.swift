@@ -8,16 +8,10 @@
 import UIKit
 
 final class ContactFlow {
-    private let navigationController: UINavigationController?
-    private let writer: ContactWriter
-    private let loader: ContactLoader
+    private let navigationController: UINavigationController?    
     
-    init(navigationController: UINavigationController?,
-         writer: ContactWriter,
-         loader: ContactLoader) {
+    init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
-        self.writer = writer
-        self.loader = loader
     }
     
     func start() {
@@ -25,7 +19,7 @@ final class ContactFlow {
     }
     
     private func presentContactList() {
-        let presenter = ContactListPresenter(loader: loader)
+        let presenter = ContactListPresenter()
         let vc = ContactListTableViewController(presenter: presenter)
         
         vc.onSelectContact = { (contactList, contact) in
@@ -36,7 +30,7 @@ final class ContactFlow {
     }
     
     private func pushContactDetail(all: [ContactItem], toEdit: ContactItem) {
-        let vc = ContactDetailViewController(writer: writer, all: all, contact: toEdit)
+        let vc = ContactDetailViewController(all: all, contact: toEdit)
         vc.onSaveContact = {
             self.navigationController?.popToRootViewController(animated: true)
         }        

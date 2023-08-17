@@ -27,14 +27,13 @@ class ContactDetailViewController: UIViewController {
     @Published private var isEditingMode: Bool = false
     private var cancellable: AnyCancellable?
     
-    private let writer: ContactWriter
+    @Inject private var writer: ContactWriter
     private let all: [ContactItem]
     private var contact: ContactItem
     
     var onSaveContact: (() -> Void)?
         
-    init(writer: ContactWriter, all: [ContactItem], contact: ContactItem) {
-        self.writer = writer
+    init(all: [ContactItem], contact: ContactItem) {        
         self.all = all
         self.contact = contact
         
